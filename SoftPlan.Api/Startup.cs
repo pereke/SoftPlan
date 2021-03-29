@@ -5,8 +5,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System;
+using MediatR;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 
 namespace SoftPlan.Api
 {
@@ -19,7 +21,6 @@ namespace SoftPlan.Api
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSwaggerGen(c =>
@@ -34,13 +35,16 @@ namespace SoftPlan.Api
                 c.CustomSchemaIds(x => x.FullName);
 
                 var xmls = Directory.GetFiles(AppContext.BaseDirectory, "*.xml", SearchOption.TopDirectoryOnly).ToList();
-                xmls.ForEach(xmlFile => c.IncludeXmlComments(xmlFile));
+                xmls.ForEach(xmlFile => c.IncludeXmlComments(xmlFile, true));
             });
 
+            const string applicationAssemblyName = "SoftPlan.Application";
+            var assembly = AppDomain.CurrentDomain.Load(applicationAssemblyName);
+
+            services.AddMediatR(assembly);
             services.AddControllers();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
