@@ -2,6 +2,6 @@
 {
     public class InterestRateResponse
     {
-        public decimal InterestRate { get; set; } = 0.01M;
+        public double InterestRate { get; set; }
     }
 }

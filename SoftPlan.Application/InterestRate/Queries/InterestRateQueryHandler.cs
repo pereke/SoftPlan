@@ -15,7 +15,7 @@ namespace SoftPlan.Application.InterestRate.Queries
 
         public Task<InterestRateResponse> Handle(InterestRateRequest request, CancellationToken cancellationToken)
         {
-            var interestRate = decimal.Parse(_configuration.GetSection("InterestRate").Value);
+            var interestRate = double.Parse(_configuration.GetSection("InterestRate").Value);
             return Task.FromResult(
                 new InterestRateResponse { 
                     InterestRate = interestRate
