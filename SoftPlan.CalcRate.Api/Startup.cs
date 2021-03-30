@@ -13,6 +13,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Security;
 using System.Threading.Tasks;
 
 namespace SoftPlan.CalcRate.Api
@@ -49,7 +52,15 @@ namespace SoftPlan.CalcRate.Api
 
             services.AddMediatR(assembly);
 
-            services.AddTransient<IGetInterestRate, GetInterestRate>();
+            services.AddHttpClient<IGetInterestRate, GetInterestRate>().ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+            {
+                ClientCertificateOptions = ClientCertificateOption.Manual,
+                ServerCertificateCustomValidationCallback =
+             (httpRequestMessage, cert, cetChain, policyErrors) =>
+             {
+                 return true;
+             }
+            });
 
             services.AddControllers();
         }

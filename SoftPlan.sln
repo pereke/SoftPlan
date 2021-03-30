@@ -7,9 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoftPlan.Api", "SoftPlan.Ap
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoftPlan.Application", "SoftPlan.Application\SoftPlan.Application.csproj", "{FA40BCD0-50E3-4936-B3B4-A0EEC9DAD86E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftPlan.CalcRate.Api", "SoftPlan.CalcRate.Api\SoftPlan.CalcRate.Api.csproj", "{BD5CA912-A2A4-4AA8-A10E-DF45CA0345D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoftPlan.CalcRate.Api", "SoftPlan.CalcRate.Api\SoftPlan.CalcRate.Api.csproj", "{BD5CA912-A2A4-4AA8-A10E-DF45CA0345D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftPlan.CalcRate.Application", "SoftPlan.CalcRate.Application\SoftPlan.CalcRate.Application.csproj", "{7430C495-6EEC-4521-BE67-2AF447C5CD50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoftPlan.CalcRate.Application", "SoftPlan.CalcRate.Application\SoftPlan.CalcRate.Application.csproj", "{7430C495-6EEC-4521-BE67-2AF447C5CD50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftPlan.Api.Test", "SoftPlan.Api.Test\SoftPlan.Api.Test.csproj", "{1B25771E-9D61-4C5F-AC35-C92702AFA374}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftPlan.CalcRate.Test", "SoftPlan.CalcRate.Test\SoftPlan.CalcRate.Test.csproj", "{8CA8FE50-5FDE-40C0-8A04-776F9DA899CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{7430C495-6EEC-4521-BE67-2AF447C5CD50}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7430C495-6EEC-4521-BE67-2AF447C5CD50}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7430C495-6EEC-4521-BE67-2AF447C5CD50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B25771E-9D61-4C5F-AC35-C92702AFA374}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B25771E-9D61-4C5F-AC35-C92702AFA374}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B25771E-9D61-4C5F-AC35-C92702AFA374}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B25771E-9D61-4C5F-AC35-C92702AFA374}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CA8FE50-5FDE-40C0-8A04-776F9DA899CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CA8FE50-5FDE-40C0-8A04-776F9DA899CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CA8FE50-5FDE-40C0-8A04-776F9DA899CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CA8FE50-5FDE-40C0-8A04-776F9DA899CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
