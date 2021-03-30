@@ -36,5 +36,23 @@ namespace SoftPlan.CalcRate.Test
         {
             public double result { get; set; }
         }
+
+        [Fact]
+        public async void GetGitHubTest()
+        {
+            var result = await _client.GetAsync("/ShowMeTheCode");
+            result.EnsureSuccessStatusCode();
+
+            var content = await result.Content.ReadAsStringAsync();
+
+            var github = JsonSerializer.Deserialize<ShowMeTheCodeResponseCamelCase>(content);
+
+            Assert.True(github.url == "https://github.com/pereke/SoftPlan");
+        }
+
+        public class ShowMeTheCodeResponseCamelCase
+        {
+            public string url { get; set; }
+        }
     }
 }
