@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <UserSecretsId>f83fb398-2a0f-4d58-8dea-bddec034c90c</UserSecretsId>
+    <UserSecretsId>8a4184d0-f005-4a35-9f3f-9684048926c5</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SoftPlan.Application\SoftPlan.Application.csproj" />
+    <ProjectReference Include="..\SoftPlan.CalcRate.Application\SoftPlan.CalcRate.Application.csproj" />
   </ItemGroup>
 
 

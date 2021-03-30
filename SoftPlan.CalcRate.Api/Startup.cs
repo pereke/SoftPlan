@@ -1,16 +1,24 @@
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using SoftPlan.CalcRate.Application.HttpService;
 using System;
-using MediatR;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
+using System.Net;
+using System.Net.Http;
+using System.Net.Security;
+using System.Threading.Tasks;
 
-namespace SoftPlan.Api
+namespace SoftPlan.CalcRate.Api
 {
     public class Startup
     {
@@ -21,6 +29,7 @@ namespace SoftPlan.Api
 
         public IConfiguration Configuration { get; }
 
+        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSwaggerGen(c =>
@@ -38,13 +47,25 @@ namespace SoftPlan.Api
                 xmls.ForEach(xmlFile => c.IncludeXmlComments(xmlFile, true));
             });
 
-            const string applicationAssemblyName = "SoftPlan.Application";
+            const string applicationAssemblyName = "SoftPlan.CalcRate.Application";
             var assembly = AppDomain.CurrentDomain.Load(applicationAssemblyName);
 
             services.AddMediatR(assembly);
+
+            services.AddHttpClient<IGetInterestRate, GetInterestRate>().ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+            {
+                ClientCertificateOptions = ClientCertificateOption.Manual,
+                ServerCertificateCustomValidationCallback =
+             (httpRequestMessage, cert, cetChain, policyErrors) =>
+             {
+                 return true;
+             }
+            });
+
             services.AddControllers();
         }
 
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -63,6 +84,7 @@ namespace SoftPlan.Api
             app.UseRouting();
 
             app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
